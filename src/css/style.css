@@ -1,0 +1,16 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+}
+
+.form-section {
+    display: none !important; /* Forcefully hide */
+}
+
+.form-section.active {
+    display: block !important; /* Forcefully show only the active one */
+}
