@@ -1,79 +1,37 @@
-<?php
-// Start session and validate token
-session_start();
-
-// Validate token from URL
-$token = isset($_GET['token']) ? htmlspecialchars($_GET['token']) : '';
-?>
-
+<?php include_once 'config/settings-configuration.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reset Password</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .form-box {
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-    input {
-      margin-bottom: 1rem;
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    button {
-      background: #0088cc;
-      color: white;
-      padding: 0.75rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0077b3;
-    }
-    .link {
-      margin-top: 1rem;
-      text-align: center;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Reset Password</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-  <div class="form-box">
-    <h2>Reset Password</h2>
-    <form action="reset-handler.php" method="POST">
-      <input type="hidden" name="token" value="<?php echo $token; ?>" />
-      <input type="password" name="new_password" placeholder="New Password" required />
-      <input type="password" name="confirm_password" placeholder="Confirm Password" required />
-      <button type="submit">Reset Password</button>
-    </form>
-    <div class="link">
-      <a href="index.php">Back to Login</a>
+<body class="bg-light">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">Reset Password</h3>
+                    <form method="POST" action="dashboard/admin/authentication/reset-password-handler.php">
+                        <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
+                        <input type="hidden" name="token" value="<?php echo $_GET['token'] ?? ''; ?>">
+                        <div class="mb-3">
+                            <input type="password" name="new_password" class="form-control" placeholder="New password" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" name="confirm_password" class="form-control" placeholder="Confirm password" required>
+                        </div>
+                        <button class="btn btn-success w-100" name="btn-reset">Reset Password</button>
+                    </form>
+                    <div class="mt-3 text-center">
+                        <a href="index.php" class="text-decoration-none">Back to Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
 </body>
 </html>

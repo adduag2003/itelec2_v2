@@ -1,103 +1,62 @@
 <?php
-   include_once 'config/setting-configuration.php';
+include_once 'config/settings-configuration.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verify OTP</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Enter OTP</h1>
-    <form action="dashboard/admin/authentication/admin-class.php" method="POST">
-        <input type="hidden" name="csrf_token" value="<?php echo $csrf_token ?>">
-        <input type="number" name="otp" placeholder="Enter OTP" required> <br>
-        <button type="submit" name="btn-verify">Verify</button>
-    </form>
-</body>
-</html><?php
-   include_once 'config/setting-configuration.php';
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Verify OTP</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .form-box {
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 1.5rem;
-      color: #333;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-    input[type="number"] {
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-    button {
-      background-color: #0088cc;
-      color: white;
-      border: none;
-      padding: 0.75rem;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    button:hover {
-      background-color: #0077b3;
-    }
-    .link {
-      margin-top: 1rem;
-      text-align: center;
-    } 
-    .link a {
-      color: #0088cc;
-      text-decoration: none;
-    }
-    .link a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
 <body>
-  <div class="form-box">
-    <h2>Enter OTP</h2>
-    <form action="dashboard/admin/authentication/admin-class.php" method="POST">
-      <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>" />
-      <input type="number" name="otp" placeholder="Enter OTP" required />
-      <button type="submit" name="btn-verify">Verify</button>
-    </form>
-    <div class="link">
-      <a href="index.php">Back to Login</a>
+    <div class="container mt-5">
+        <h1>OTP Verification</h1>
+
+        <!-- Button to trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#otpModal">
+            Enter OTP
+        </button>
+
+        <!-- OTP Verification Modal -->
+        <div class="modal fade" id="otpModal" tabindex="-1" aria-labelledby="otpModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="otpModalLabel">Enter OTP</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="dashboard/admin/authentication/admin-class.php" method="POST">
+                            <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
+                            <div class="mb-3">
+                                <label for="otpInput" class="form-label">Enter the OTP sent to your device</label>
+                                <input type="number" class="form-control" id="otpInput" name="otp" placeholder="Enter OTP" required>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary" name="btn-verify">VERIFY</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Auto-open modal script (optional) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var myModal = new bootstrap.Modal(document.getElementById('otpModal'));
+            myModal.show();
+        });
+    </script>
 </body>
+
 </html>

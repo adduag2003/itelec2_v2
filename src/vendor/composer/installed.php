@@ -1,20 +1,20 @@
 <?php return array(
     'root' => array(
-        'name' => '__root__',
+        'name' => 'artrepo/project',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '985f3314398fc0ad0355d0f32f8c49151752bee1',
-        'type' => 'library',
+        'reference' => '71a516c733f348dd968c131dbab61b1b2607a5ca',
+        'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        '__root__' => array(
+        'artrepo/project' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '985f3314398fc0ad0355d0f32f8c49151752bee1',
-            'type' => 'library',
+            'reference' => '71a516c733f348dd968c131dbab61b1b2607a5ca',
+            'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
